@@ -17,7 +17,7 @@ app.listen(port, () => {
 
 // need to hook up some auth service, maybe enforce rate limits for ddos, don't want to get too complicated 
 
-const pwndApiKey = '11a561d02d894b5ba7239d6d1500e73a'
+const pwndApiKey = process.env.PWND_KEY
 app.get('/breaches', async (req, res) => {
     let params = req.query
     console.log('params:')
