@@ -21,7 +21,7 @@ Go check out <a href="https://pwnd-frontend.herokuapp.com">pwnd-frontend.herokua
 
 ## Some notes
 
-I made the concoius choice to split the front and back ends of this service - if ever you have to make calls to a protected service with a sensitive token, its not safe to house the frontend and the backend under the same roof. With a split service, you can use API keys / tokens through environment variables or load them through secrets, and only let authenticated
+I made the concious choice to split the front and back ends of this service - if ever you have to make calls to a protected service with a sensitive token, its not safe to house the frontend and the backend under the same roof. With a split service, you can use API keys / tokens through environment variables or load them through secrets, and only let authenticated
 calls come through to use those keys against third party resources. Just a safer passthrough in my experience, even though its a bit of extra setup.
 
 
