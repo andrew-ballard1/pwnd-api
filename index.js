@@ -13,11 +13,10 @@ app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
 
-// normally with a more complex backend I'd break these into controllers
+// normally with a more complex backend I'd break these into controllers.
+// need to hook up some auth service, maybe enforce rate limits for ddos, but don't want to get too complicated 
 
-// need to hook up some auth service, maybe enforce rate limits for ddos, don't want to get too complicated 
-
-const pwndApiKey = '11a561d02d894b5ba7239d6d1500e73a'//process.env.PWND_KEY
+const pwndApiKey = process.env.PWND_KEY
 app.get('/breaches', async (req, res) => {
     let params = req.query
     console.log('params:')
