@@ -17,7 +17,7 @@ app.listen(port, () => {
 
 // need to hook up some auth service, maybe enforce rate limits for ddos, don't want to get too complicated 
 
-const pwndApiKey = process.env.PWND_KEY
+const pwndApiKey = '11a561d02d894b5ba7239d6d1500e73a'//process.env.PWND_KEY
 app.get('/breaches', async (req, res) => {
     let params = req.query
     console.log('params:')
@@ -37,40 +37,17 @@ app.get('/breaches', async (req, res) => {
     let data = {}
     try {
         const response = await fetch(pwndApiUrl, options)
-        data = await response.json()
-        res.send(data)
-    } catch (e) {
-        console.log(e)
-        res.send(e)
-    }
-    
-})
-
-app.get('/breach/:name', async (req, res) => {
-    console.log('================')
-    let params = req.params
-    console.log('params:')
-    console.log(params)
-    console.log('hit breach/name endpoint')
-    
-    // send data to pwnd api with account, maybe do validation
-    const name = encodeURIComponent(params.name)
-    const options = {
-        headers: {
-            'hibp-api-key': `${pwndApiKey}`
+        if(response.status === 404){
+            data = {isClean: true, data: []}
+        } else {
+            const returnData = await response.json()
+            data = {isClean: false, data: returnData}
         }
-    }
-    const pwndApiUrl = `https://haveibeenpwned.com/api/v3/breach/${name}`
 
-
-    let data = {}
-    try {
-        const response = await fetch(pwndApiUrl, options)
-        data = await response.json()
         res.send(data)
     } catch (e) {
         console.log(e)
-        res.send(e)
+        res.send({isClean: false, data: []})
     }
     
 })
