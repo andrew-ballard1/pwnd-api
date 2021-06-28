@@ -2,7 +2,7 @@
 
 ## Prerequisets
 
-I used node 15.14.0, so its a good idea to install that version to run this server.
+I used node `15.14.0`, so its a good idea to install that version or higher to run this server.
 
 You can use a node version manager to switch between versions, <a href="https://www.npmjs.com/package/n">I'm partial to "n"</a>
 You can also use NVM
